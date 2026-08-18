@@ -268,7 +268,6 @@ export function Works() {
         <div className="mb-8 flex items-center gap-3">
           <LayersIcon size={20} className="text-cyan" />
           <h3 className="text-gradient text-xl font-bold tracking-tight sm:text-2xl">CUSTOM DISCORD PROJECTS</h3>
-          <span className="font-mono text-xs text-ghost">— add unlimited projects in config</span>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {config.projects.map((project, i) => (
@@ -276,16 +275,6 @@ export function Works() {
               <CustomProjectCard project={project} />
             </Reveal>
           ))}
-        </div>
-      </Reveal>
-
-      <Reveal className="mt-12">
-        <div className="glass flex items-start gap-3 rounded-xl border-amberx/20 p-4">
-          <AlertIcon size={18} className="mt-0.5 shrink-0 text-amberx" />
-          <p className="text-xs leading-relaxed text-ghost">
-            Invite links and websites are placeholders. No real invitation URLs are fabricated — configure
-            them in <code className="text-cyan">src/config.ts</code>.
-          </p>
         </div>
       </Reveal>
 
