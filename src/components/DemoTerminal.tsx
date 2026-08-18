@@ -80,7 +80,7 @@ export function DemoTerminal({ onMatrix, onBots }: DemoTerminalProps) {
 
   const runCommand = (raw: string) => {
     const cmd = raw.trim()
-    setLines((prev) => [...prev, { text: `yeon@system:~$ ${cmd}`, kind: 'input' }])
+    setLines((prev) => [...prev, { text: `kaixel@system:~$ ${cmd}`, kind: 'input' }])
     if (!cmd) return
     setHistory((h) => [...h, cmd])
     setHistoryIndex(-1)
@@ -183,7 +183,7 @@ export function DemoTerminal({ onMatrix, onBots }: DemoTerminalProps) {
         )}
         {!booting && (
           <div className="flex items-center gap-2">
-            <span className="text-cyan">yeon@system:~$</span>
+            <span className="text-cyan">kaixel@system:~$</span>
             <input
               ref={inputRef}
               value={input}
