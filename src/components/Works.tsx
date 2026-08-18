@@ -6,7 +6,7 @@ import { Reveal } from './Reveal'
 import { BotArtwork } from './BotArtwork'
 import { BotModal } from './BotModal'
 import { useAudio } from '../audio/AudioProvider'
-import { SearchIcon, CheckIcon, ExternalIcon, SparklesIcon, AlertIcon, BotIcon, LayersIcon } from './icons'
+import { SearchIcon, CheckIcon, ExternalIcon, SparklesIcon, BotIcon, LayersIcon } from './icons'
 
 const CATEGORIES = ['All', 'Security', 'Economy', 'Music', 'Utility', 'AI', 'Moderation', 'Other'] as const
 
