@@ -199,6 +199,7 @@ export function DemoTerminal({ onMatrix, onBots }: DemoTerminalProps) {
         )}
       </div>
 
+      {/* ITO NA YUNG BINAGO KO — ISANG LINYA LANG, WALA NANG YEON */}
       <div className="border-t border-line bg-black/30 px-4 py-2 font-mono text-[10px] tracking-widest text-ghost/60">
         SAFE MODE · VISUAL DEMO ONLY · TRY: help | sudo kaixel | matrix | coffee | bots
       </div>
