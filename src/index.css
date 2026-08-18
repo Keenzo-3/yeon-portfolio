@@ -1,0 +1,239 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #050607;
+  --cyan: #00e5ff;
+  --mint: #34d399;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+html,
+body {
+  max-width: 100%;
+}
+
+body {
+  background-color: #050607;
+  color: #e5e7eb;
+  font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  overflow-x: hidden;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Selection ---------- */
+::selection {
+  background: rgba(0, 229, 255, 0.25);
+  color: #ffffff;
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #07090b;
+}
+::-webkit-scrollbar-thumb {
+  background: #1d2329;
+  border-radius: 8px;
+  border: 2px solid #07090b;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 229, 255, 0.4);
+}
+
+/* ---------- Utilities ---------- */
+.font-mono {
+  font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.text-gradient {
+  background: linear-gradient(100deg, #ffffff 0%, #9aa3ab 55%, #ffffff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.text-gradient-cyan {
+  background: linear-gradient(100deg, #00e5ff, #67e8f9, #ffffff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ---------- Background layers ---------- */
+.animated-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 42px 42px;
+  animation: gridMove 22s linear infinite;
+}
+
+.scanlines::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.14) 0px,
+    rgba(0, 0, 0, 0.14) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: multiply;
+}
+
+.noise::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 41;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.vignette::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 39;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+/* ---------- Glitch ---------- */
+.glitch {
+  position: relative;
+  display: inline-block;
+}
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0;
+}
+.glitch:hover::before {
+  opacity: 0.7;
+  color: #00e5ff;
+  animation: glitchShift 0.35s steps(2) infinite;
+  transform: translate(-2px, -1px);
+}
+.glitch:hover::after {
+  opacity: 0.7;
+  color: #f43f5e;
+  animation: glitchShift 0.3s steps(2) infinite reverse;
+  transform: translate(2px, 1px);
+}
+@keyframes glitchShift {
+  0% { clip-path: inset(0 0 85% 0); }
+  25% { clip-path: inset(20% 0 55% 0); }
+  50% { clip-path: inset(60% 0 10% 0); }
+  75% { clip-path: inset(10% 0 70% 0); }
+  100% { clip-path: inset(80% 0 5% 0); }
+}
+
+/* ---------- Card tilt / hover ---------- */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.tilt-card:hover {
+  border-color: rgba(0, 229, 255, 0.35);
+  box-shadow: 0 0 24px rgba(0, 229, 255, 0.12);
+}
+
+/* ---------- Marquee ---------- */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 28s linear infinite;
+}
+
+/* ---------- Radar sweep ---------- */
+@keyframes radarSweep {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.radar-sweep {
+  animation: radarSweep 4s linear infinite;
+}
+
+/* ---------- Lock / dash ---------- */
+@keyframes dashFlow {
+  to { stroke-dashoffset: -60; }
+}
+.dash-flow {
+  stroke-dasharray: 12 8;
+  animation: dashFlow 1.4s linear infinite;
+}
+
+/* ---------- Grid overlay for hacker mode ---------- */
+.matrix-grid {
+  background-image:
+    linear-gradient(rgba(0, 255, 157, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 157, 0.05) 1px, transparent 1px);
+  background-size: 46px 46px;
+  animation: gridMove 16s linear infinite;
+}
+
+/* ---------- Focus states ---------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid rgba(0, 229, 255, 0.7);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Hide custom cursor on touch devices */
+@media (pointer: coarse) {
+  .custom-cursor {
+    display: none !important;
+  }
+}
+
+/* Utility: disable native cursor when custom cursor active on desktop */
+.cursor-active,
+.cursor-active * {
+  cursor: none;
+}

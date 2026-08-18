@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yeon-portfolio.netlify.app/sitemap.xml
